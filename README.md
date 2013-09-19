@@ -4,7 +4,7 @@ easyfglrxinstall
 Easy Ubuntu fglrx installation script
 
 Instructions:  
-- Download the appropriate .zip file for your system at AMD's website  
+- Download the appropriate .zip file for your system at [AMD's website](http://support.amd.com/us/gpudownload/Pages/index.aspx)  
 - Create a folder and place the .zip file in that folder.  
 - Download the script from this repository.  
 - Save it as easyfglrxinstall.sh in the folder where you saved that zip file.  

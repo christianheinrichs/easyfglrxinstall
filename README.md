@@ -4,8 +4,9 @@ easyfglrxinstall
 Easy Ubuntu fglrx installation script
 
 What can this script do?  
-This script was written to help people troubleshooting their fglrx installation faster.  
-So instead of manually entering all the commands found on the tutorial pages, this script does all the work for you.
+This script was written to help people troubleshoot their fglrx installation faster.  
+So instead of manually entering all the commands found on the tutorial pages,
+this script does all the work for you.
 
 It let's you choose between 3 installation methods:
 - Downloading and installing fglrx via apt-get

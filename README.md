@@ -15,18 +15,21 @@ It let's you choose between 3 installation methods:
 
 If you want to post feedback, improvements or suggestions, feel free to do so at [Ubuntu Forums](http://ubuntuforums.org/showthread.php?t=2174060).
 
-Instructions:  
-- Download the appropriate .zip file for your system at [AMD's website](http://support.amd.com/us/gpudownload/Pages/index.aspx)
-- Create a folder and place the .zip file in that folder.
-- Download the script from this repository by clicking on the `Download ZIP` button to the right.
-- Save it as easyfglrxinstall.sh in the folder where you saved that zip file.
-- Open a terminal and type the following commands:
+Instructions:
 
-        cd /Whereever_your_folder_is
-        sh easyfglrxinstall.sh
+1. Download the appropriate .zip file for your system at [AMD's website](http://support.amd.com/us/gpudownload/Pages/index.aspx)
+2. Create a folder and place the .zip file in that folder.
+3. Download the script from this repository by clicking on the `Download ZIP` button to the right.
+4. Save it as easyfglrxinstall.sh in the folder where you saved that zip file.
+5. Open a terminal and type the following commands:
 
-- Follow the instructions with simple (y)es and (n)o commands.
-- Enjoy!
+    ```
+    cd /Whereever_your_folder_is
+    sh easyfglrxinstall.sh
+    ```
+
+6. Follow the instructions with simple (y)es and (n)o commands.
+7. Enjoy!
 
 This script would not be possible without the instructions of the following websites:
 

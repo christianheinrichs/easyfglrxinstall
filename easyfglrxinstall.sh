@@ -7,7 +7,7 @@
 ##################################
 
 # Accepted distro versions: gutsy, hardy, intrepid, jaunty, lucid, maverick, natty, oneiric, precise, quantal, raring
-# Not yet implented distro versions: breezy, dapper, feisty
+# Not yet implemented distro versions: breezy, dapper, feisty
 
 agmethod() {
     if [ $modechoose = f ] || [ $modechoose = F ]

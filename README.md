@@ -4,8 +4,8 @@ easyfglrxinstall
 Easy Ubuntu fglrx installation script
 
 What can this script do?  
-This script was written to help people troubleshoot their fglrx installation faster.  
-So instead of manually entering all the commands found on the tutorial pages,
+This script was written to help people troubleshoot their fglrx installation faster when it causes problems.  
+So instead of manually entering all the commands found on the tutorial pages,  
 this script does all the work for you.
 
 It let's you choose between 3 installation methods:
@@ -17,19 +17,21 @@ If you want to post feedback, improvements or suggestions, feel free to do so at
 
 Instructions:
 
-1. Download the appropriate .zip file for your system at [AMD's website](http://support.amd.com/us/gpudownload/Pages/index.aspx)
+1. Download the appropriate .zip file for your system at [AMD's website](http://support.amd.com/us/gpudownload/Pages/index.aspx).
 2. Create a folder and place the .zip file in that folder.
-3. Download the script from this repository by clicking on the `Download ZIP` button to the right.
+3. Download the script from this repository with any method of your choice.  
+   The simplest way is to just click the [`Download ZIP`](https://github.com/netcyphe/easyfglrxinstall/archive/master.zip) button.
 4. Save it as easyfglrxinstall.sh in the folder where you saved that zip file.
 5. Open a terminal and type the following commands:
 
-    ```
-    cd /Whereever_your_folder_is
+    ````
+    cd whereever_your_folder_is
     sh easyfglrxinstall.sh
-    ```
+    ````
 
-6. Follow the instructions with simple (y)es and (n)o commands.
-7. Enjoy!
+6. Select either the fast mode or the verbose mode by entering `f` or `v`.
+7. Answer the questions by entering `n` for no or `y` for yes.
+8. Enjoy!
 
 This script would not be possible without the instructions of the following websites:
 

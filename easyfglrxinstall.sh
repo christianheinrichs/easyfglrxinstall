@@ -6,7 +6,7 @@
 #                                #
 ##################################
 
-# easyfglrxinstall.sh written by netcyphe - 12/23/2013
+# easyfglrxinstall.sh written by netcyphe - 01/06/2013
 
 # Accepted distro versions: gutsy, hardy, intrepid, jaunty, lucid, maverick, natty, oneiric, precise, quantal, raring
 # Not yet implemented distro versions: breezy, dapper, feisty
@@ -15,7 +15,7 @@ agmethod() {
     echo "[F]ast or [v]erbose mode? \c"
     read modechoose
 
-    if [ $modechoose = f ] || [ $modechoose = F ]
+    if [ $modechoose = "f" ] || [ $modechoose = "F" ]
         then
             echo "agmethod() running in fast mode\n"
 
@@ -41,11 +41,13 @@ agmethod() {
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
-                  mainmenu;;
+                  mainmenu
+                  return;;
             *) echo "Wrong input! Returning to main menu."
-               mainmenu;;
+               mainmenu
+               return;;
             esac
-    elif [ $modechoose = v ] || [ $modechoose = V ]
+    elif [ $modechoose = "v" ] || [ $modechoose = "V" ]
         then
             echo "agmethod() running in verbose mode\n"
             echo "Remove all installed fglrx files? \c"
@@ -60,7 +62,8 @@ agmethod() {
             [nN]) echo "You chose no. Please make sure that the fglrx driver was removed already. Continuing..."
                   continue;;
             *) echo "Wrong input! Returning"
-               agmethod;;
+               agmethod
+               return;;
             esac
 
             echo "Do you want to install the fglrx driver with apt-get? \c"
@@ -70,9 +73,11 @@ agmethod() {
             [yY]) echo "Installing via apt-get\n"
                   sudo apt-get install fglrx fglrx-amdcccle;;
             [nN]) echo "Returning to main menu."
-                  mainmenu;;
+                  mainmenu
+                  return;;
             *) echo "Wrong input! Returning."
-               agmethod;;
+               agmethod
+               return;;
             esac
 
             echo "Create initial fglrx configuration? \c"
@@ -86,7 +91,8 @@ agmethod() {
             [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing..."
                   continue;;
             *) echo "Wrong input! Returning."
-               agmethod;;
+               agmethod
+               return;;
             esac
 
             # Reboot dialog
@@ -108,9 +114,9 @@ agmethod() {
 
 debmethod() {
     echo "[F]ast or [v]erbose mode? \c"
-    read modechoose    
+    read modechoose
 
-    if [ $modechoose = f ] || [ $modechoose = F ]
+    if [ $modechoose = "f" ] || [ $modechoose = "F" ]
         then
             echo "debmethod() running in fast mode\n"
 
@@ -132,7 +138,8 @@ debmethod() {
             64) echo "Installing required 64 bit package\n"
                 sudo apt-get install lib32gcc1;;
             *) echo "Wrong input! Returning."
-               debmethod;;
+               debmethod
+               return;;
             esac
 
             echo "Extracting .zip archive\n"
@@ -158,11 +165,13 @@ debmethod() {
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
-                  mainmenu;;
+                  mainmenu
+                  return;;
             *) echo "Wrong input! Returning to main menu."
-               mainmenu;;
+               mainmenu
+               return;;
             esac
-    elif [ $modechoose = v ] || [ $modechoose = V ]
+    elif [ $modechoose = "v" ] || [ $modechoose = "V" ]
         then
             echo "debmethod() running in verbose mode\n"
 
@@ -176,9 +185,11 @@ debmethod() {
                   sudo apt-get remove --purge fglrx fglrx_* fglrx-amdcccle* fglrx-dev*
                   sudo apt-get remove --purge fglrx fglrx-amdcccle fglrx-dev fglrx-updates fglrx-amdcccle-updates;;
             [nN]) echo "Past fglrx installations must be removed. Returning to debmethod()"
-                  debmethod;;
+                  debmethod
+                  return;;
             *) echo "Wrong input! Returning."
-               debmethod;;
+               debmethod
+               return;;
             esac
 
             # Getting required dependencies for build
@@ -191,7 +202,8 @@ debmethod() {
             [nN]) echo "Make sure you have all the build packages installed."
                   continue;;
             *) echo "Wrong input! Returning."
-               debmethod;;
+               debmethod
+               return;;
             esac
 
             echo "Do you have a 32 bit or a 64 bit system? (32/64) \c"
@@ -202,7 +214,8 @@ debmethod() {
             64) echo "Installing required 64 bit packages\n"
                 sudo apt-get install lib32gcc1;;
             *) echo "Wrong input! Returning."
-               debmethod;;
+               debmethod
+               return;;
             esac
 
             echo "Extract fglrx .zip archive? \c"
@@ -214,7 +227,8 @@ debmethod() {
             [nN]) echo "You chose no. Make sure that the extracted files are in this folder. Continuing..."
                   continue;;
             *) echo "Wrong input! Returning."
-               debmethod;;
+               debmethod
+               return;;
             esac
 
             echo "WARNING: Is the .run file in the same folder as this script? (Y/N) \c"
@@ -224,9 +238,11 @@ debmethod() {
             [yY]) echo "Continuing..."
                   continue;;
             [nN]) echo "The .run file must be in the same folder as this script."
-                  debmethod;;
+                  debmethod
+                  return;;
             *) echo "Wrong input! Returning."
-               debmethod;;
+               debmethod
+               return;;
             esac
 
             echo "Do you want to build the package for your Ubuntu version? \c"
@@ -236,12 +252,14 @@ debmethod() {
             [yY]) echo "Building package\n"
                   sudo sh amd*.run --buildpkg;;
             [nN]) echo "You chose no. Returning to main menu."
-                  mainmenu;;
+                  mainmenu
+                  return;;
             *) echo "Wrong input! Returning."
-               debmethod;;
+               debmethod
+               return;;
             esac
 
-            echo "The debian package has been built for your distribution. Install it? (Y/N) \c"
+            echo "The debian package should have been built for your distribution. Install it? (Y/N) \c"
             read instdecision
 
             # Install debian package
@@ -249,9 +267,11 @@ debmethod() {
             [yY]) echo "Installing package\n"
                   sudo dpkg -i fglrx*.deb;;
             [nN]) echo "You chose no. Returning to main menu."
-                  mainmenu;;
+                  mainmenu
+                  return;;
             *) echo "Wrong input! Returning"
-               debmethod;;
+               debmethod
+               return;;
             esac
 
             echo "Create initial fglrx configuration? \c"
@@ -265,7 +285,8 @@ debmethod() {
             [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing..."
                   continue;;
             *) echo "Wrong input. Returning."
-               debmethod;;
+               debmethod
+               return;;
             esac
 
             # Reboot dialog
@@ -276,9 +297,11 @@ debmethod() {
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
-                  mainmenu;;
+                  mainmenu
+                  return;;
             *) echo "Wrong input! Returning to main menu."
-               mainmenu;;
+               mainmenu
+               return;;
             esac
     else
         echo "Please enter either f or v"
@@ -289,7 +312,7 @@ runmethod() {
     echo "[F]ast or [v]erbose mode? \c"
     read modechoose
 
-    if [ $modechoose = f ] || [ $modechoose = F ]
+    if [ $modechoose = "f" ] || [ $modechoose = "F" ]
         then
             echo "runmethod() running in fast mode\n"
             echo "WARNING: Is the fglrx .run file in the same folder as this script? (Y/N) \c"
@@ -318,9 +341,11 @@ runmethod() {
                   sudo amdconfig --initial;;
                   #sudo aticonfig --initial
             [nN]) echo "It has to be in this folder. Returning."
-                  runmethod;;
+                  runmethod
+                  return;;
             *) echo "Wrong input! Returning."
-               runmethod;;
+               runmethod
+               return;;
             esac
 
             # Reboot dialog
@@ -331,12 +356,14 @@ runmethod() {
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
-                  mainmenu;;
+                  mainmenu
+                  return;;
             *) echo "Wrong input! Returning to main menu."
-               mainmenu;;
+               mainmenu
+               return;;
             esac
 
-    elif [ $modechoose = v ] || [ $modechoose = V ]
+    elif [ $modechoose = "v" ] || [ $modechoose = "V" ]
         then
             echo "runmethod() running in verbose mode\n"
             echo "WARNING: Is the fglrx .run file in the same folder as this script? (Y/N) \c"
@@ -346,9 +373,11 @@ runmethod() {
             [yY]) echo "Creating xorg backup\n"
                   sudo cp /etc/X11/xorg.conf /etc/X11/xorg.conf.BAK;;
             [nN]) echo "The .run file has to be in this folder. Returning."
-                  runmethod;;
+                  runmethod
+                  return;;
             *) echo "Wrong input! Returning."
-               runmethod;;
+               runmethod
+               return;;
             esac
 
             echo "Do you want to deinstall leftover fglrx files from past installations? \c"
@@ -360,9 +389,11 @@ runmethod() {
                   sudo apt-get remove --purge fglrx fglrx_* fglrx-amdcccle* fglrx-dev*
                   sudo apt-get remove --purge fglrx fglrx-amdcccle fglrx-dev fglrx-updates fglrx-amdcccle-updates;;
             [nN]) echo "Past installations must be removed. Returning to runmethod()"
-                  runmethod;;
+                  runmethod
+                  return;;
             *) echo "Wrong input! Returning"
-               runmethod;;
+               runmethod
+               return;;
             esac
 
             echo "Extract .zip archive? \c"
@@ -374,7 +405,8 @@ runmethod() {
             [nN]) echo "You chose no. Make sure that the extracted files are in this folder. Continuing..."
                   continue;;
             *) echo "Wrong input! Returning"
-               runmethod;;
+               runmethod
+               return;;
             esac
 
             echo "Grant executable file permission rights to the .run file? \c"
@@ -386,7 +418,8 @@ runmethod() {
             [nN]) echo "You chose no. The .run file must be executable. Continuing..."
                   continue;;
             *) echo "Wrong input! Returning."
-               runmethod;;
+               runmethod
+               return;;
             esac
 
             echo "Execute fglrx .run file? \c"
@@ -396,9 +429,11 @@ runmethod() {
             [yY]) echo "Executing fglrx .run file\n"
                   sudo ./amd*.run;;
             [nN]) echo "Returning to main menu."
-                  mainmenu;;
+                  mainmenu
+                  return;;
             *) echo "Wrong input! Returning."
-               runmethod;;
+               runmethod
+               return;;
             esac
 
             echo "Create configuration file? \c"
@@ -411,7 +446,8 @@ runmethod() {
             [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing..."
                   continue;;
             *) echo "Wrong input! Returning."
-               runmethod;;
+               runmethod
+               return;;
             esac
 
             # Reboot dialog
@@ -422,9 +458,11 @@ runmethod() {
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
-                  mainmenu;;
+                  mainmenu
+                  return;;
             *) echo "Wrong input! Returning to main menu."
-               mainmenu;;
+               mainmenu
+               return;;
             esac
     else
         echo "Please enter either f or v"
@@ -452,12 +490,15 @@ Choose one of the installation methods:
     if [ $methodchoose = 1 ]
         then 
             agmethod
+            return
         elif [ $methodchoose = 2 ]
             then
                 debmethod
+                return
         elif [ $methodchoose = 3 ]
             then
                 runmethod
+                return
         elif [ $methodchoose = 4 ]
             then
                 # Uninstall all .deb packages and .run leftovers
@@ -469,16 +510,18 @@ Choose one of the installation methods:
                 echo "Do you want to reboot? \c"
                 read rebootdec
 
-                if [ $rebootdec = y ] || [ $rebootdec = Y ]
+                if [ $rebootdec = "y" ] || [ $rebootdec = "Y" ]
                     then
                         sudo reboot
                 else
                     echo "Be sure to reboot to apply the changes."
                     mainmenu
+                    return
                 fi
         elif [ $methodchoose = 5 ]
             then
                 rebootmethod
+                return
         elif [ $methodchoose = 6 ]
             then
                 echo "Exit"
@@ -486,6 +529,7 @@ Choose one of the installation methods:
         else
             echo "Wrong input."
             mainmenu
+            return
     fi
 }
 

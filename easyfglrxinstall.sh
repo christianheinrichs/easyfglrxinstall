@@ -26,7 +26,7 @@
 #                                #
 ##################################
 
-# easyfglrxinstall.sh written by netcyphe - 01/12/2013
+# easyfglrxinstall.sh written by netcyphe - 01/12/2014
 
 # Accepted distro versions: gutsy, hardy, intrepid, jaunty, lucid, maverick, natty, oneiric, precise, quantal, raring
 # Not yet implemented distro versions: breezy, dapper, feisty

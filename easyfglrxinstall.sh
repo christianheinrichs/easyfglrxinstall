@@ -26,7 +26,7 @@
 #                                #
 ##################################
 
-# easyfglrxinstall.sh written by netcyphe - 01/12/2014
+# easyfglrxinstall.sh written by netcyphe - 01/25/2014
 
 # Accepted distro versions: gutsy, hardy, intrepid, jaunty, lucid, maverick, natty, oneiric, precise, quantal, raring
 # Not yet implemented distro versions: breezy, dapper, feisty
@@ -79,8 +79,7 @@ agmethod() {
                   sudo sh /usr/share/ati/fglrx-uninstall.sh
                   sudo apt-get remove --purge fglrx fglrx_* fglrx-amdcccle* fglrx-dev*
                   sudo apt-get remove --purge fglrx fglrx-amdcccle fglrx-dev fglrx-updates fglrx-amdcccle-updates;;
-            [nN]) echo "You chose no. Please make sure that the fglrx driver was removed already. Continuing..."
-                  continue;;
+            [nN]) echo "You chose no. Please make sure that the fglrx driver was removed already. Continuing...";;
             *) echo "Wrong input! Returning"
                agmethod
                return;;
@@ -108,8 +107,7 @@ agmethod() {
                   echo "Setting up initial fglrx configuration\n"
                   sudo amdconfig --initial;;
                   #sudo aticonfig --initial;;
-            [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing..."
-                  continue;;
+            [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing...";;
             *) echo "Wrong input! Returning."
                agmethod
                return;;
@@ -219,8 +217,7 @@ debmethod() {
             case $builddecision in
             [yY]) echo "Downloading/installing build packages\n"
                   sudo apt-get install build-essential cdbs dh-make dkms execstack dh-modaliases fakeroot libqtgui4;;
-            [nN]) echo "Make sure you have all the build packages installed."
-                  continue;;
+            [nN]) echo "Make sure you have all the build packages installed.";;
             *) echo "Wrong input! Returning."
                debmethod
                return;;
@@ -244,8 +241,7 @@ debmethod() {
             case $unzipdecision in
             [yY]) echo "Extracting fglrx .zip archive\n"
                   unzip amd*.zip;;
-            [nN]) echo "You chose no. Make sure that the extracted files are in this folder. Continuing..."
-                  continue;;
+            [nN]) echo "You chose no. Make sure that the extracted files are in this folder. Continuing...";;
             *) echo "Wrong input! Returning."
                debmethod
                return;;
@@ -255,8 +251,7 @@ debmethod() {
             read runfiledecision
 
             case $runfiledecision in
-            [yY]) echo "Continuing..."
-                  continue;;
+            [yY]) echo "Continuing...";;
             [nN]) echo "The .run file must be in the same folder as this script."
                   debmethod
                   return;;
@@ -302,8 +297,7 @@ debmethod() {
             [yY]) echo "Setting up initial fglrx configuration\n"
                   sudo amdconfig --initial;;
                   #sudo aticonfig --initial;;
-            [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing..."
-                  continue;;
+            [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing...";;
             *) echo "Wrong input. Returning."
                debmethod
                return;;
@@ -422,8 +416,7 @@ runmethod() {
             case $unzipfiles in
             [yY]) echo "Extracting fglrx .zip archive\n"
                   unzip amd*.zip;;
-            [nN]) echo "You chose no. Make sure that the extracted files are in this folder. Continuing..."
-                  continue;;
+            [nN]) echo "You chose no. Make sure that the extracted files are in this folder. Continuing...";;
             *) echo "Wrong input! Returning"
                runmethod
                return;;
@@ -435,8 +428,7 @@ runmethod() {
             case $grantingdecision in
             [yY]) echo "Granting executable file permission rights to fglrx .run file\n"
                   sudo chmod +x amd*.run;;
-            [nN]) echo "You chose no. The .run file must be executable. Continuing..."
-                  continue;;
+            [nN]) echo "You chose no. The .run file must be executable. Continuing...";;
             *) echo "Wrong input! Returning."
                runmethod
                return;;
@@ -463,8 +455,7 @@ runmethod() {
             [yY]) echo "Setting up initial fglrx configuration\n"
                   sudo amdconfig --initial;;
                   #sudo aticonfig --initial
-            [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing..."
-                  continue;;
+            [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing...";;
             *) echo "Wrong input! Returning."
                runmethod
                return;;

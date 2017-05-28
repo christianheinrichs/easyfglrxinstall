@@ -2,8 +2,8 @@
 
 #######################################################################################
 #                                                                                     #
-#  easyfglrxinstall.sh - Install the fglrx driver on Ubuntu systems                   #
-#  Copyright (C) 2013-2014 Christian Heinrichs <christian.heinrichs@openmailbox.org>  #
+#  easyfglrxinstall.sh - Install the fglrx driver on Debian-based operating systems   #
+#  Copyright (C) 2013-2017 Christian Heinrichs <christian.heinrichs@openmailbox.org>  #
 #                                                                                     #
 #  This program is free software: you can redistribute it and/or modify               #
 #  it under the terms of the GNU General Public License as published by               #
@@ -26,16 +26,16 @@
 #                                #
 ##################################
 
-# easyfglrxinstall.sh written by Christian Heinrichs - 05/15/2014
+# easyfglrxinstall.sh written by Christian Heinrichs - 05/29/2017
 
-# Accepted distro versions: gutsy, hardy, intrepid, jaunty, lucid, maverick, natty, oneiric, precise, quantal, raring
-# Not yet implemented distro versions: breezy, dapper, feisty
+# Accepted distro versions should be irrelevant, also this script should work
+# on Debian as well as Ubuntu systems regardless of the distro version
 
 agmethod() {
     echo "[F]ast or [v]erbose mode? \c"
-    read modechoose
+    read modechoice
 
-    if [ $modechoose = "f" ] || [ $modechoose = "F" ]
+    if [ $modechoice = "f" ] || [ $modechoice = "F" ]
         then
             echo "agmethod() running in fast mode\n"
 
@@ -45,8 +45,9 @@ agmethod() {
             sudo apt-get remove --purge fglrx fglrx_* fglrx-amdcccle* fglrx-dev*
             sudo apt-get remove --purge fglrx fglrx-amdcccle fglrx-dev fglrx-updates fglrx-amdcccle-updates
 
+            # Not sure about this one anymore, could be fglrx-driver now
             echo "Installing via apt-get\n"
-            sudo apt-get install fglrx fglrx-amdcccle
+            sudo apt-get install fglrx fglrx-amdcccle fglrx-driver
 
             # Set up initial driver config
             echo "Setting up initial fglrx configuration\n"
@@ -55,9 +56,9 @@ agmethod() {
 
             # Reboot dialog
             echo "Reboot? (Y/N) \c"
-            read rebootdecision
+            read rebootchoice
 
-            case $rebootdecision in
+            case $rebootchoice in
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
@@ -67,13 +68,13 @@ agmethod() {
                mainmenu
                return;;
             esac
-    elif [ $modechoose = "v" ] || [ $modechoose = "V" ]
+    elif [ $modechoice = "v" ] || [ $modechoice = "V" ]
         then
             echo "agmethod() running in verbose mode\n"
             echo "Remove all installed fglrx files? \c"
-            read delchoose
+            read delchoice
 
-            case $delchoose in
+            case $delchoice in
             [yY]) # Uninstall all .deb packages and .run leftovers
                   echo "Removing all leftover fglrx installation files\n"
                   sudo sh /usr/share/ati/fglrx-uninstall.sh
@@ -86,11 +87,11 @@ agmethod() {
             esac
 
             echo "Do you want to install the fglrx driver with apt-get? \c"
-            read instdecision
+            read instchoice
 
-            case $instdecision in
+            case $instchoice in
             [yY]) echo "Installing via apt-get\n"
-                  sudo apt-get install fglrx fglrx-amdcccle;;
+                  sudo apt-get install fglrx fglrx-amdcccle fglrx-driver;;
             [nN]) echo "Returning to main menu."
                   mainmenu
                   return;;
@@ -100,11 +101,11 @@ agmethod() {
             esac
 
             echo "Create initial fglrx configuration? \c"
-            read cfgdecision
+            read cfgchoice
 
-            case $cfgdecision in
-            [yY]) # Setup initial driver config
-                  echo "Setting up initial fglrx configuration\n"
+            case $cfgchoice in
+            # Setup initial driver config
+            [yY]) echo "Setting up initial fglrx configuration\n"
                   sudo amdconfig --initial;;
                   #sudo aticonfig --initial;;
             [nN]) echo "You chose no. Make sure to set the configuration before rebooting! Continuing...";;
@@ -115,9 +116,9 @@ agmethod() {
 
             # Reboot dialog
             echo "Reboot? (Y/N) \c"
-            read rebootdecision
+            read rebootchoice
 
-            case $rebootdecision in
+            case $rebootchoice in
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
@@ -132,9 +133,9 @@ agmethod() {
 
 debmethod() {
     echo "[F]ast or [v]erbose mode? \c"
-    read modechoose
+    read modechoice
 
-    if [ $modechoose = "f" ] || [ $modechoose = "F" ]
+    if [ $modechoice = "f" ] || [ $modechoice = "F" ]
         then
             echo "debmethod() running in fast mode\n"
 
@@ -145,15 +146,15 @@ debmethod() {
             sudo apt-get remove --purge fglrx fglrx-amdcccle fglrx-dev fglrx-updates fglrx-amdcccle-updates
 
             # Getting required dependencies for build
-            echo "Downloading/installing build packages\n"
+            echo "Downloading and installing build packages\n"
             sudo apt-get install build-essential cdbs dh-make dkms execstack dh-modaliases fakeroot libqtgui4
 
-            echo "Do you have a 32 bit or a 64 bit system? (32/64) \c"
-            read archdecision
+            echo "Do you have a 32-bit or a 64-bit system? (32/64) \c"
+            read archchoice
 
-            case $archdecision in
-            32) echo "System is not a 64 bit architecture. Skipping installation of lib32gcc1\n";;
-            64) echo "Installing required 64 bit package\n"
+            case $archchoice in
+            32) echo "System is not a 64-bit architecture. Skipping installation of lib32gcc1\n";;
+            64) echo "Installing required 64-bit package\n"
                 sudo apt-get install lib32gcc1;;
             *) echo "Wrong input! Returning."
                debmethod
@@ -177,9 +178,9 @@ debmethod() {
 
             # Reboot dialog
             echo "Reboot? (Y/N) \c"
-            read rebootdecision
+            read rebootchoice
 
-            case $rebootdecision in
+            case $rebootchoice in
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
@@ -189,15 +190,15 @@ debmethod() {
                mainmenu
                return;;
             esac
-    elif [ $modechoose = "v" ] || [ $modechoose = "V" ]
+    elif [ $modechoice = "v" ] || [ $modechoice = "V" ]
         then
             echo "debmethod() running in verbose mode\n"
 
             # Uninstall all .deb packages and .run leftovers
             echo "Uninstall all leftover fglrx files? \c"
-            read uninstdecision
+            read uninstchoice
 
-            case $uninstdecision in
+            case $uninstchoice in
             [yY]) echo "Removing all leftover fglrx installation files\n"
                   sudo sh /usr/share/ati/fglrx-uninstall.sh
                   sudo apt-get remove --purge fglrx fglrx_* fglrx-amdcccle* fglrx-dev*
@@ -215,7 +216,7 @@ debmethod() {
             read builddecision
 
             case $builddecision in
-            [yY]) echo "Downloading/installing build packages\n"
+            [yY]) echo "Downloading and installing build packages\n"
                   sudo apt-get install build-essential cdbs dh-make dkms execstack dh-modaliases fakeroot libqtgui4;;
             [nN]) echo "Make sure you have all the build packages installed.";;
             *) echo "Wrong input! Returning."
@@ -223,12 +224,12 @@ debmethod() {
                return;;
             esac
 
-            echo "Do you have a 32 bit or a 64 bit system? (32/64) \c"
-            read archdecision
+            echo "Do you have a 32-bit or a 64-bit system? (32/64) \c"
+            read archchoice
 
-            case $archdecision in
-            32) echo "System is not a 64 bit architecture. Skipping installation of lib32gcc1\n";;
-            64) echo "Installing required 64 bit packages\n"
+            case $archchoice in
+            32) echo "System is not a 64-bit architecture. Skipping installation of lib32gcc1\n";;
+            64) echo "Installing required 64-bit packages\n"
                 sudo apt-get install lib32gcc1;;
             *) echo "Wrong input! Returning."
                debmethod
@@ -236,9 +237,9 @@ debmethod() {
             esac
 
             echo "Extract fglrx .zip archive? \c"
-            read unzipdecision
+            read extchoice
 
-            case $unzipdecision in
+            case $extchoice in
             [yY]) echo "Extracting fglrx .zip archive\n"
                   unzip amd*.zip;;
             [nN]) echo "You chose no. Make sure that the extracted files are in this folder. Continuing...";;
@@ -248,9 +249,9 @@ debmethod() {
             esac
 
             echo "WARNING: Is the .run file in the same folder as this script? (Y/N) \c"
-            read runfiledecision
+            read runfilechoice
 
-            case $runfiledecision in
+            case $runfilechoice in
             [yY]) echo "Continuing...";;
             [nN]) echo "The .run file must be in the same folder as this script."
                   debmethod
@@ -260,10 +261,10 @@ debmethod() {
                return;;
             esac
 
-            echo "Do you want to build the package for your Ubuntu version? \c"
-            read buildingdecision
+            echo "Do you want to build the package for your distro version? \c"
+            read buildchoice
 
-            case $buildingdecision in
+            case $buildchoice in
             [yY]) echo "Building package\n"
                   sudo sh amd*.run --buildpkg;;
             [nN]) echo "You chose no. Returning to main menu."
@@ -274,11 +275,11 @@ debmethod() {
                return;;
             esac
 
-            echo "The debian package should have been built for your distribution. Install it? (Y/N) \c"
-            read instdecision
+            echo "The Debian package should have been built for your distribution. Install it? (Y/N) \c"
+            read instchoice
 
-            # Install debian package
-            case $instdecision in
+            # Install Debian package
+            case $instchoice in
             [yY]) echo "Installing package\n"
                   sudo dpkg -i fglrx*.deb;;
             [nN]) echo "You chose no. Returning to main menu."
@@ -290,10 +291,10 @@ debmethod() {
             esac
 
             echo "Create initial fglrx configuration? \c"
-            read cfgdecision
+            read cfgchoice
 
             # Setup initial driver config
-            case $cfgdecision in
+            case $cfgchoice in
             [yY]) echo "Setting up initial fglrx configuration\n"
                   sudo amdconfig --initial;;
                   #sudo aticonfig --initial;;
@@ -305,9 +306,9 @@ debmethod() {
 
             # Reboot dialog
             echo "Reboot? (Y/N) \c"
-            read rebootdecision
+            read rebootchoice
 
-            case $rebootdecision in
+            case $rebootchoice in
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
@@ -324,18 +325,18 @@ debmethod() {
 
 runmethod() {
     echo "[F]ast or [v]erbose mode? \c"
-    read modechoose
+    read modechoice
 
-    if [ $modechoose = "f" ] || [ $modechoose = "F" ]
+    if [ $modechoice = "f" ] || [ $modechoice = "F" ]
         then
             echo "runmethod() running in fast mode\n"
             echo "WARNING: Is the fglrx .run file in the same folder as this script? (Y/N) \c"
             read samefolder
 
-            # Create xorg backup
+            # Create xorg.conf backup
             case $samefolder in
-            [yY]) echo "Creating xorg backup\n"
-                  sudo cp /etc/X11/xorg.conf /etc/X11/xorg.conf.BAK
+            [yY]) echo "Creating xorg.conf backup\n"
+                  sudo cp /etc/X11/xorg.conf /etc/X11/xorg.conf~
 
                   echo "Removing all leftover fglrx installation files\n"
                   sudo sh /usr/share/ati/fglrx-uninstall.sh
@@ -364,9 +365,9 @@ runmethod() {
 
             # Reboot dialog
             echo "Reboot? (Y/N) \c"
-            read rebootdecision
+            read rebootchoice
 
-            case $rebootdecision in
+            case $rebootchoice in
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
@@ -377,15 +378,15 @@ runmethod() {
                return;;
             esac
 
-    elif [ $modechoose = "v" ] || [ $modechoose = "V" ]
+    elif [ $modechoice = "v" ] || [ $modechoice = "V" ]
         then
             echo "runmethod() running in verbose mode\n"
             echo "WARNING: Is the fglrx .run file in the same folder as this script? (Y/N) \c"
             read samefolder
 
             case $samefolder in
-            [yY]) echo "Creating xorg backup\n"
-                  sudo cp /etc/X11/xorg.conf /etc/X11/xorg.conf.BAK;;
+            [yY]) echo "Creating xorg.conf backup\n"
+                  sudo cp /etc/X11/xorg.conf /etc/X11/xorg.conf~;;
             [nN]) echo "The .run file has to be in this folder. Returning."
                   runmethod
                   return;;
@@ -394,10 +395,10 @@ runmethod() {
                return;;
             esac
 
-            echo "Do you want to deinstall leftover fglrx files from past installations? \c"
-            read uninstdecision
+            echo "Do you want to uninstall leftover fglrx files from past installations? \c"
+            read uninstchoice
 
-            case $uninstdecision in
+            case $uninstchoice in
             [yY]) echo "Removing all leftover fglrx installation files\n"
                   sudo sh /usr/share/ati/fglrx-uninstall.sh
                   sudo apt-get remove --purge fglrx fglrx_* fglrx-amdcccle* fglrx-dev*
@@ -423,9 +424,9 @@ runmethod() {
             esac
 
             echo "Grant executable file permission rights to the .run file? \c"
-            read grantingdecision
+            read chmodchoice
 
-            case $grantingdecision in
+            case $chmodchoice in
             [yY]) echo "Granting executable file permission rights to fglrx .run file\n"
                   sudo chmod +x amd*.run;;
             [nN]) echo "You chose no. The .run file must be executable. Continuing...";;
@@ -435,9 +436,9 @@ runmethod() {
             esac
 
             echo "Execute fglrx .run file? \c"
-            read runningdecision
+            read execrunchoice
 
-            case $runningdecision in
+            case $execrunchoice in
             [yY]) echo "Executing fglrx .run file\n"
                   sudo ./amd*.run;;
             [nN]) echo "Returning to main menu."
@@ -449,9 +450,9 @@ runmethod() {
             esac
 
             echo "Create configuration file? \c"
-            read cfgdecision
+            read cfgchoice
 
-            case $cfgdecision in
+            case $cfgchoice in
             [yY]) echo "Setting up initial fglrx configuration\n"
                   sudo amdconfig --initial;;
                   #sudo aticonfig --initial
@@ -463,9 +464,9 @@ runmethod() {
 
             # Reboot dialog
             echo "Reboot? (Y/N) \c"
-            read rebootdecision
+            read rebootchoice
 
-            case $rebootdecision in
+            case $rebootchoice in
             [yY]) echo "System going down\n"
                   sudo reboot;;
             [nN]) echo "Be sure to reboot!"
@@ -490,27 +491,27 @@ mainmenu() {
     echo "
 Choose one of the installation methods:
 1. apt-get method
-2. Create a debian package and install it
+2. Create a Debian package and install it
 3. Execute the fglrx .run file
 4. AMD driver uninstall only
 5. Reboot the system
 6. Exit\n"
 
-    read methodchoose
+    read methodchoice
 
-    if [ $methodchoose = 1 ]
+    if [ $methodchoice = 1 ]
         then 
             agmethod
             return
-        elif [ $methodchoose = 2 ]
+        elif [ $methodchoice = 2 ]
             then
                 debmethod
                 return
-        elif [ $methodchoose = 3 ]
+        elif [ $methodchoice = 3 ]
             then
                 runmethod
                 return
-        elif [ $methodchoose = 4 ]
+        elif [ $methodchoice = 4 ]
             then
                 # Uninstall all .deb packages and .run leftovers
                 echo "Uninstalling...\n"
@@ -519,9 +520,9 @@ Choose one of the installation methods:
                 sudo apt-get remove --purge fglrx fglrx-amdcccle fglrx-dev fglrx-updates fglrx-amdcccle-updates
 
                 echo "Do you want to reboot? \c"
-                read rebootdec
+                read rebootchoice
 
-                if [ $rebootdec = "y" ] || [ $rebootdec = "Y" ]
+                if [ $rebootchoice = "y" ] || [ $rebootchoice = "Y" ]
                     then
                         sudo reboot
                 else
@@ -529,11 +530,11 @@ Choose one of the installation methods:
                     mainmenu
                     return
                 fi
-        elif [ $methodchoose = 5 ]
+        elif [ $methodchoice = 5 ]
             then
                 rebootmethod
                 return
-        elif [ $methodchoose = 6 ]
+        elif [ $methodchoice = 6 ]
             then
                 echo "Exit"
                 exit 0

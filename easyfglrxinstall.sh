@@ -3,7 +3,7 @@
 #######################################################################################
 #                                                                                     #
 #  easyfglrxinstall.sh - Install the fglrx driver on Debian-based operating systems   #
-#  Copyright (C) 2013-2017 Christian Heinrichs <christian.heinrichs@openmailbox.org>  #
+#  Copyright (C) 2013-2017 Christian Heinrichs <christian.heinrichs@inventati.org>    #
 #                                                                                     #
 #  This program is free software: you can redistribute it and/or modify               #
 #  it under the terms of the GNU General Public License as published by               #
@@ -26,7 +26,7 @@
 #                                #
 ##################################
 
-# easyfglrxinstall.sh written by Christian Heinrichs - 05/29/2017
+# easyfglrxinstall.sh written by Christian Heinrichs - Last modified 08/27/2017
 
 # Accepted distro versions should be irrelevant, also this script should work
 # on Debian as well as Ubuntu systems regardless of the distro version

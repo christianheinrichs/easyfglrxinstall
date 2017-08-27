@@ -2,6 +2,7 @@ easyfglrxinstall
 ================
 
 Easy Ubuntu fglrx installation script
+
 What can this script do?
 
 This script was written to help people troubleshoot their fglrx installation faster when it causes problems.
@@ -14,7 +15,7 @@ It let's you choose between 3 installation methods:
 
 If you want to post feedback, improvements or suggestions, feel free to do so at [Ubuntu Forums](https://ubuntuforums.org/showthread.php?t=2174060).
 
-Instructions (For this tutorial we assume you are using ):
+Instructions (Assuming you are using ~/Downloads/fglrx/):
 
 1. Download the appropriate .zip file for your system at [AMD's driver download page](https://support.amd.com/en-us/download).
 2. Create a new folder like so: `mkdir ~/Downloads/fglrx/`
@@ -46,4 +47,4 @@ This script would not be possible without the instructions of the following webs
 - [Ubuntu documentation](https://help.ubuntu.com/)
 - [Unofficial Wiki for the ATI Linux Driver](http://wiki.cchtml.com/)
 
-*Disclaimer:** I cannot be held responsible for any system damage or data loss. Use this script at your own risk!
+**Disclaimer:** I cannot be held responsible for any system damage or data loss. Use this script at your own risk!

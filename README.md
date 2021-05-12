@@ -16,7 +16,7 @@ This script was written to help people troubleshoot their fglrx installation
 faster when it causes problems. So instead of manually entering all the commands
 found on the tutorial pages, this script does all the work for you.
 
-It let’s you choose between 3 installation methods:
+It lets you choose between 3 installation methods:
 - Downloading and installing fglrx via apt-get
 - Creating and installing a debian package for your system
 - Simply execute the .run file found in the ZIP archive downloaded from AMD

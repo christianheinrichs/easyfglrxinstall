@@ -20,13 +20,13 @@
 #                                                                                    #
 ######################################################################################
 
-##################################
-#                                #
-# Easy fglrx installation script #
-#                                #
-##################################
+####################################
+#                                  #
+#  Easy fglrx installation script  #
+#                                  #
+####################################
 
-# easyfglrxinstall.sh written by Christian Heinrichs - Last modified 07/10/2019
+# easyfglrxinstall.sh written by Christian Heinrichs - Last modified 12/05/2021
 
 # Accepted distro versions should be irrelevant, also this script should work on
 # Debian as well as Ubuntu systems regardless of the distro version
@@ -226,7 +226,7 @@ debmethod() {
 
             case $archchoice in
             32) printf "System is not a 64-bit architecture. Skipping installation of lib32gcc1\n\n";;
-            64) printf "Installing required 64-bit packages\n\n"
+            64) printf "Installing required 64-bit package\n\n"
                 sudo apt-get install lib32gcc1;;
             *) printf "Wrong input! Returning.\n"
                debmethod

@@ -4,7 +4,7 @@ easyfglrxinstall
 *A lot of time has passed since I wrote and published this script. Alas, not
 only did Debian drop support for their officially maintained fglrx packages, but
 so did Ubuntu in terms of stable distro versions. It is therefore not
-recommended to rely on this script's apt installation method. In fact, building
+recommended to rely on this script’s apt installation method. In fact, building
 a fglrx .deb package is also a bad idea, since the latest downloadable versions
 seem to be from 2015. There is no actual reason to use this script anymore.*
 
@@ -16,7 +16,7 @@ This script was written to help people troubleshoot their fglrx installation
 faster when it causes problems. So instead of manually entering all the commands
 found on the tutorial pages, this script does all the work for you.
 
-It let's you choose between 3 installation methods:
+It let’s you choose between 3 installation methods:
 - Downloading and installing fglrx via apt-get
 - Creating and installing a debian package for your system
 - Simply execute the .run file found in the ZIP archive downloaded from AMD

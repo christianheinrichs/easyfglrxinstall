@@ -1,0 +1,108 @@
+Version 18.9.2013
+- Initial commit
+
+Version 19.9.2013-r1
+- Update README.md
+
+Version 19.9.2013-r2
+- Create easyfglrxinstall.sh
+
+Version 19.9.2013-r3
+- Fix AMD driver download link
+
+Version 19.9.2013-r4
+- Update README.md
+
+Version 19.9.2013-r5
+- Add Ubuntu Forums thread link
+- Update instructions
+
+Version 22.9.2013
+- Correct grammar
+
+Version 26.9.2013
+- Change bullet list to numbered list
+
+Version 3.10.2013
+- Minor grammar fix
+
+Version 22.12.2013
+- Minor additions and corrections to README.md
+
+Version 23.12.2013
+- Resolve issue #2 by removing the workaround section
+- Convert the main menu to a function
+- Add reboot item to main menu
+- Move mode selection into the functions
+- Correct formatting
+
+Version 6.1.2014
+- Close issue #3 by adding return commands
+- Replace decision values with strings
+
+Version 12.1.2014-r1
+- Add license
+
+Version 12.1.2014-r2
+- Add license notice
+
+Version 22.1.2014
+- Correct typo
+
+Version 1.2.2014
+- Remove continue statement
+
+Version 15.5.2014-r1
+- Update README.md
+- Update GNU license notice
+
+Version 15.5.2014-r2
+- Correct typo
+
+Version 29.5.2017
+- Add fglrx-driver as apt-get installation candidate
+- Minor cosmetic code changes
+
+Version 27.8.2017-r1
+- Fix DOS/UNIX file conversion and line ending problems
+- Minor README.md rewrite
+- Add .gitignore file
+- Change email address
+
+Version 27.8.2017-r2
+- Small README.md correction
+
+Version 16.10.2017-r1
+- Create CODE_OF_CONDUCT.md
+- Partially resolve issue #4
+
+Version 16.10.2017-r2
+- Add comment in .gitignore
+
+Version 3.11.2018
+- Delete CODE_OF_CONDUCT.md
+
+Version 7.10.2019
+- Ignore .swp files
+- Update README.md
+- Update email address
+- Convert US date format to UK date format
+- Replace echo with printf for better system compatibility
+- Shorten syntax for sudo apt-get remove --purge
+- Remove obsolete aticonfig lines (replaced by amdconfig)
+- Use systemctl to reboot the system
+- Use -y switch in apt-get for fast installation method
+- Use chmod, cp and unzip -v switch for verbose installation method
+
+Version 12.5.2021-r1
+- Slightly improve README and script
+
+Version 12.5.2021-r2
+- Correct typo
+
+Version 19.1.2022
+- Add changelog
+- Add README plaintext file
+- Update README.md
+- Use different date format
+- Slightly correct script comments

@@ -3,7 +3,7 @@
 ######################################################################################
 #                                                                                    #
 #  easyfglrxinstall.sh - Install the fglrx driver on Debian-based operating systems  #
-#  Copyright (C) 2013-2019 Christian Heinrichs <christian.heinrichs@mykolab.ch>      #
+#  Copyright (C) 2013-2022 Christian Heinrichs <christian.heinrichs@mykolab.ch>      #
 #                                                                                    #
 #  This program is free software: you can redistribute it and/or modify              #
 #  it under the terms of the GNU General Public License as published by              #
@@ -26,7 +26,8 @@
 #                                  #
 ####################################
 
-# easyfglrxinstall.sh written by Christian Heinrichs - Last modified 12/05/2021
+# easyfglrxinstall.sh written by Christian Heinrichs
+# Last modified on 19 January 2022
 
 # Accepted distro versions should be irrelevant, also this script should work on
 # Debian as well as Ubuntu systems regardless of the distro version
@@ -103,7 +104,7 @@ agmethod() {
             read cfgchoice
 
             case $cfgchoice in
-            # Setup initial driver config
+            # Setup initial driver configuration
             [yY]) printf "Setting up initial fglrx configuration\n\n"
                   sudo amdconfig --initial;;
             [nN]) printf "You chose no. Make sure to set the configuration before rebooting! Continuing...\n";;
@@ -143,7 +144,7 @@ debmethod() {
             sudo apt-get purge -y fglrx fglrx_* fglrx-amdcccle* fglrx-dev*
             sudo apt-get purge -y fglrx fglrx-amdcccle fglrx-dev fglrx-updates fglrx-amdcccle-updates
 
-            # Getting required dependencies for build
+            # Get required dependencies for build
             printf "Downloading and installing build packages\n\n"
             sudo apt-get install -y build-essential cdbs dh-make dkms execstack dh-modaliases fakeroot libqtgui4
 
@@ -208,7 +209,7 @@ debmethod() {
                return;;
             esac
 
-            # Getting required dependencies for build
+            # Get required dependencies for build
             printf "Download and install build packages? "
             read builddecision
 
@@ -478,7 +479,7 @@ runmethod() {
 }
 
 rebootmethod() {
-    printf "Rebooting in 3 seconds.\n"
+    printf "Rebooting in three seconds.\n"
     sleep 3
     systemctl reboot
 }

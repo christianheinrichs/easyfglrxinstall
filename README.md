@@ -59,5 +59,9 @@ websites:
 - [Ubuntu documentation](https://help.ubuntu.com)
 - [Unofficial Wiki for the ATI Linux Driver](http://wiki.cchtml.com)
 
+#### Licensing
+This project is licensed under the GNU GPL 3.0 license. To read it, please
+refer to the [LICENSE](LICENSE) document.
+
 **Disclaimer:** I cannot be held responsible for any system damage or data loss.
 Use this script at your own risk!

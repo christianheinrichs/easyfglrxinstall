@@ -106,3 +106,7 @@ Version 19.1.2022
 - Update README.md
 - Use different date format
 - Slightly correct script comments
+
+Version 13.5.2022
+- Move licensing notice down
+- Use Markdown heading syntax in README.md

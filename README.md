@@ -8,7 +8,7 @@ recommended to rely on this script’s apt installation method. In fact, buildin
 a fglrx .deb package is also a bad idea, since the latest downloadable versions
 seem to be from 2015. There is no actual reason to use this script anymore.*
 
-Easy fglrx installation script
+#### Easy fglrx installation script
 
 What can this script do?
 
@@ -24,7 +24,7 @@ It lets you choose between three installation methods:
 If you want to post feedback, improvements or suggestions, feel free to do so at
 [Ubuntu Forums](https://ubuntuforums.org/showthread.php?t=2174060).
 
-Instructions (Assuming you are using ~/Downloads/fglrx):
+#### Instructions (Assuming you are using ~/Downloads/fglrx):
 
 1. Download the appropriate .zip file for your system at
    [AMD’s driver download page](https://support.amd.com/en-us/download)
@@ -59,9 +59,9 @@ websites:
 - [Ubuntu documentation](https://help.ubuntu.com)
 - [Unofficial Wiki for the ATI Linux Driver](http://wiki.cchtml.com)
 
+**Disclaimer:** I cannot be held responsible for any system damage or data loss.
+Use this script at your own risk!
+
 #### Licensing
 This project is licensed under the GNU GPL 3.0 license. To read it, please
 refer to the [LICENSE](LICENSE) document.
-
-**Disclaimer:** I cannot be held responsible for any system damage or data loss.
-Use this script at your own risk!
